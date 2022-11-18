@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>非单文件组件的基本使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <!--使用组件-->
+        <school></school>
+
+        <student></student>
+
+        <hr>
+        
+        <hello></hello>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        //创建school组件
+        const sch = Vue.extend({
+            template:`
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{schoolAddress}}</h2>
+                <button @click="alertSchoolName">点我提示学校名</button>
+            </div>
+            `,
+
+            data(){
+                return {
+                    schoolName: "test",
+                    schoolAddress: "test_address"
+                }
+            },
+            methods:{
+                alertSchoolName(){
+                    alert(this.schoolName)
+                }
+            }
+
+        })
+
+
+        //创建student组件
+        const stu = Vue.extend({
+            template:`
+            <div>
+                <h2>学生姓名：{{studentName}}</h2>
+                <h2>学生年龄：{{studentAge}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    studentName: "wyy",
+                    studentAge: 22
+                }
+            }
+        })
+
+
+        //测试全局注册组件
+        const hello = Vue.extend({
+            template:`
+            <div>
+                <h2>你好！{{name}}</h2>    
+            </div>
+            `,
+            data(){
+                return {
+                    name:"wyy"
+                }
+            }
+            
+        })
+
+        //使用hello实现全局注册组件
+        Vue.component('hello',hello)
+
+        //注册组件
+        new Vue({
+            el:"#root",
+            //局部注册组件
+            components:{
+                school:sch,
+                student:stu
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>初识Vue</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h1>Hello {{name.toUpperCase()}}!</h1>
+        <h2>小的Hello {{small_name}}!</h2>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //设置为 false 以阻止 vue 在启动时生成生产提示
+
+        //创建vue实例
+        //配置对象表示在创建实例的时候向其中添加{}对象参数
+        const x = new Vue({
+            el: '#root', //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+            data: {
+                name: 'World',
+                small_name:'World'
+            }
+        })
+
+    </script>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>v-once指令</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+    <div id="root">
+        <h2 v-once>初始化的n值为：{{n}}</h2>
+        <h2>当前的n值为：{{n}}</h2>
+        <button @click="n++">点我n+1</button>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:"#root",
+            data:{
+                n:1
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>

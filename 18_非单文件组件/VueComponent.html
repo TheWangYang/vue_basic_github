@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>VueComponent</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <!--使用组件-->
+        <school></school>
+        <hr>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+    //创建school组件
+    const sch = Vue.extend({
+        template: `
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{schoolAddress}}</h2>
+            </div>
+            `,
+        data() {
+            return {
+                schoolName: "test",
+                schoolAddress: "test_address"
+            }
+        }
+
+    })
+
+    //输出school组件对象
+    console.log(sch)
+
+    //注册组件
+    new Vue({
+        el: "#root",
+        //局部注册组件
+        components: {
+            school: sch,
+        }
+    })
+
+    </script>
+</body>
+
+
+</html>

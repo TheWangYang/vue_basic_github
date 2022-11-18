@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue中的事件修饰符</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <style>
+
+        *{
+            margin: 20px;
+        }
+
+
+        .demo2{
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .box1{
+            padding: 5px;
+            background-color: skyblue;
+        }
+
+        .box2{
+            padding: 5px;
+            background-color: orange;
+
+        }
+
+
+        .list{
+            height: 200px;
+            width: 200px;
+            background-color: peru;
+            overflow: auto;
+        }
+
+        li{
+            height: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <!-- <h2>欢迎来到{{name}}学习</h2> -->
+
+        <!--阻止事件跳转-->
+        <!-- <a class='demo1' href="www.baidu.com" @click.prevent="showInfo">点我提示信息</a> -->
+
+
+        <!--阻止事件冒泡-->
+        <!-- <div class="demo2" @click="showInfo">
+
+            <button @click.stop="showInfo">点我测试阻止事件冒泡</button>
+
+        </div> -->
+
+
+        <!--事件只触发一次-->
+        <!-- <button class="demo3" @click.once="showInfo">点我测试事件只有触发一次</button> -->
+
+        <!--使用事件的捕获模式-->
+        <!-- <div class="box1" @click.capture="showMessage(1)">
+            div1
+
+            <div class="box2" @click="showMessage(2)">
+                div2
+            </div>
+
+
+        </div> -->
+
+        <!--测试：只有在event.target是当前操作的元素事才触发事件-->
+        <div class="demo2" @click.self="showInfo">
+        
+            <button @click="showInfo">点我测试self事件</button>
+        
+        </div>
+
+        <!--测试passive事件，事件的默认行为立即执行，无需等待事件回调执行完毕-->
+        <ul @wheel="demo" class="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+
+        </ul>
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: "xjtu"
+            },
+            methods: {
+                showInfo(event){
+                    // console.log(event.target)
+                    // event.stopPropagation()
+                    alert("test")
+                    //组织a标签默认的跳转动作
+                    //event.preventDefault()
+                },
+                showMessage(message){
+                    console.log(message)
+
+                },
+                demo(){//设置的监听滚动条滚动事件函数
+                    // console.log('scroll')
+                    // for (let i = 0; i < 100000; i++) {
+                    //     console.log("#")
+                    // }
+
+                    console.log('finish')
+                }
+            }
+
+        })
+
+    </script>
+
+
+
+</body>
+
+
+</html>

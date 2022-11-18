@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>天气案例_监视的简写形式</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>今天天气很好，是{{info}}！</h2>
+        <button @click="change">切换天气</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isHot:true,
+            },
+            //设置计算属性
+            computed:{
+                info(){
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                change(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                //完整形式
+                // isHot:{
+                //     // immediate:true,//初始化时让handler调用一下
+                //     handler(newValue,oldValue){
+                //         console.log("isHot被修改了！",newValue,oldValue)
+                //     }
+                // }
+
+
+                //简写形式
+                // isHot(newValue,oldValue){
+                //     console.log('isHot被修改了！',newValue,oldValue)
+                // }
+
+            }
+        })
+
+
+        //使用$的正常形式
+        // vm.$watch('isHot',{
+        //     immediate:true,//初始化时让handler调用一下
+        //     handler(newValue,oldValue){
+        //         console.log("isHot被修改了！",newValue,oldValue,this)
+        //     }
+        // })
+
+        // 使用$的简写形式
+        vm.$watch('isHot',function(newValue,oldValue){
+            console.log('isHot被修改了！', newValue, oldValue,this)
+        })
+
+        
+    </script>
+
+
+
+</body>
+
+
+</html>
+
+

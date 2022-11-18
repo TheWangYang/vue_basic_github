@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>组件的嵌套</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <!-- <school></school> -->
+        <!-- <student></student> -->
+
+        <app></app>
+
+        <hr>
+
+        <app></app>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        const hello = Vue.extend({
+            template:`
+            <div>
+                <h2>你好，{{helloName}}！</h2>    
+            </div>
+            `,
+            data(){
+                return {
+                    helloName:"wyy"
+                }
+            }
+        })
+
+
+    
+        //创建student组件
+        const stu = Vue.extend({
+            template:`
+            <div>
+                <h2>学生姓名：{{studentName}}</h2>
+                <h2>学生年龄：{{studentAge}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    studentName: "wyy",
+                    studentAge: 22
+                }
+            }
+        })
+
+
+        //定义school组件
+        const sch = {
+                template: `
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{schoolAddress}}</h2>
+                <student></student>
+            </div>
+            `,
+                data() {
+                    return {
+                        schoolName: "xjtu",
+                        schoolAddress: "西安"
+                    }
+                },
+                //在学校里面嵌入student组件
+                components:{
+                    student:stu
+                }
+            }
+
+
+            //定义一个组合schoole和hello组件的app组件
+            const app = Vue.extend({
+                    template: `
+            <div>
+                <school></school>
+                <hello></hello>    
+            </div>
+            `,
+                    components: {
+                        school: sch,
+                        hello: hello
+                    }
+                })
+
+        
+
+        //局部注册
+        new Vue({
+            el:"#root",
+            components:{
+                // school:sch,
+                // student:stu
+                app:app
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>

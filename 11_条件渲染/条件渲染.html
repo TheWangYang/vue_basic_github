@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>条件渲染</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <!--使用v-show做条件渲染-->
+        <!--使用v-show之后并设置值为false，虽然不显示了，但是结构还在，只是使用了diplay-none属性设置不可见-->
+        <!-- <h1 v-show="true">欢迎来到{{name}}</h1> -->
+
+
+        <!--使用v-if做条件渲染-->
+        <!--使用v-if并设置为false值，页面中元素就不在-->
+        <!-- <h1 v-if="false">欢迎来到{{name}}</h1> -->
+
+    </br>
+    </br>
+    </br>
+
+    <h1>n的值为{{n}}</h1>
+    <button @click="n++">点我n+1</button>
+
+    <!-- <div v-if="n === 1">Angular</div>
+    <div v-else-if="n === 1">React</div>
+    <div v-else-if="n === 3">Vue</div> -->
+    
+
+    </br>
+    </br>
+    </br>
+
+
+    <template v-if="n === 1">
+        <h2>你好</h2>
+        <h2>西安交大</h2>
+        <h2>西安</h2>
+
+    </template>
+
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:"#root",
+            data:{
+                name:"test",
+                n:0
+            }
+        })
+    </script>
+
+
+
+</body>
+
+
+</html>

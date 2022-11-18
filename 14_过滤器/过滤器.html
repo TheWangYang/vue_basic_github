@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>过滤器</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>显示指定格式后的时间：</h2>
+        {{fullTime1}}
+
+        <h2>methods实现，显示指定格式的时间</h2>
+        {{getFormatTime()}}
+
+        <h2>过滤器实现，显示指定格式的时间</h2>
+        {{time | timeFilters}}
+
+        <h2>在已经设定的过滤器上更改格式</h2>
+        {{time | timeFilters('YYYY年MM月DD日')}}
+
+
+        <h2>过滤器中设置只显示年份</h2>
+        {{time | timeFilters | mySlice}}
+
+        <h2>测试过滤器的v-bind用法</h2>
+        <input type="text" :x = "msg | mySlice">
+    
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        //配置全局过滤器
+        Vue.filter('mySlice',function(value){
+            return value.slice(0,4)
+        })
+
+
+        
+        new Vue({
+            el:"#root",
+            data:{
+                time: 1660659607738,
+                msg:"This is just a test."
+            },
+            computed:{//计算属性实现对时间的处理
+                fullTime1(){
+                    return dayjs(this.time).format("YYYY-MM-DD HH:mm:ss")
+                }
+            },
+
+            methods:{
+                getFormatTime(){
+                    return dayjs(this.time).format("YYYY-MM-DD HH:mm:ss")
+                }
+            },
+            filters:{//过滤器可以实现对time时间的加工
+                timeFilters(value, formatStr){
+                    return dayjs(value).format(formatStr)
+                },
+                firstForthNumFilters(value){
+                    return value.slice(0, 4)
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>

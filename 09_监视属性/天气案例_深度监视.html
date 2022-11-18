@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>天气案例_深度监视</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>今天天气很好，是{{info}}！</h2>
+        <button @click="change">切换天气</button>
+
+
+    </hr>
+
+
+    <h3>a的值是：{{numbers.a}}</h3>
+    <button @click="numbers.a++">点我让a加1</button>
+    
+    </hr>
+    <h3>b的值是：{{numbers.b}}</h3>
+    <button @click="numbers.b++">点我让b加1</button>
+
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isHot:true,
+                numbers:{
+                    a:1,
+                    b:1
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                change(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                isHot:{
+                    // immediate:true,//初始化时让handler调用一下
+                    handler(newValue,oldValue){
+                        console.log("isHot被修改了！",newValue,oldValue)
+                    }
+                },
+                //监视多级结构中某个属性的变化
+                // 'numbers.a':{
+                //     handler(){
+                //         console.log("a的值改变了！")
+                //     }
+                // }
+
+                //监视多级结构中所有属性的变化
+                numbers:{
+                    deep: true,
+                    handler(){
+                        console.log('numbers改变了！')
+                    }
+                }
+            }
+        })
+
+        
+    </script>
+
+
+
+</body>
+
+
+</html>
+
+

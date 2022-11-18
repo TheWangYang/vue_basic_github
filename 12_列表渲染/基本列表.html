@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>基本列表</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+        <!--遍历数组-->
+        <ul>
+            <!--让每一个li都有一个id标识-->
+            <h2>遍历列表</h2>
+            <li v-for="p in persons" :key="p.id">
+                {{p.name}}-{{p.id}}-{{p.age}}
+            </li>
+        </ul>
+
+
+
+        <!--遍历对象-->
+        <h2>遍历对象</h2>
+        <ul>
+            <li v-for="(value,k) of cars" :key="k">
+                {{value}}-{{k}}
+            </li>
+
+        </ul>
+
+
+        <!--遍历字符串-->
+        <h2>遍历字符串</h2>
+        <ul>
+            <li v-for="(char, index) of str" :key="index">
+                {{char}}-{{index}}
+            </li>
+        
+        </ul>
+
+
+        <!--遍历指定次数-->
+        <h2>遍历指定次数</h2>
+        <ul>
+            <li v-for="(number, index) of 10" :key="index">
+                {{number}}-{{index}}
+            </li>
+        
+        </ul>
+
+
+
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: '001', name: '张三', age: 22 },
+                    { id: '002', name: '李四', age: 24 },
+                    { id: '003', name: '王五', age: 26 }
+                ],
+
+                cars:{
+                    car_name:"布加迪",
+                    car_price:"200w",
+                    car_id:"001"
+                },
+
+                str:"test"
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>

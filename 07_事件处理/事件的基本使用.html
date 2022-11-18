@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>事件的基本使用</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <button @click="showInfo1">点我显示提示信息1</button>
+        <button @click="showInfo2(66,$event)">点我显示提示信息2</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        // function showInfo() {
+        //     alert('同学你好')
+        // }
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: "xjtu"
+            },
+            methods:{
+                showInfo1(event){
+                    alert('同学你好！')
+                    console.log(this)  //此处的this为vm对象实例
+                },
+                showInfo2(number,event){
+                    console.log(number,event)
+                    alert("同学你好！")
+
+                }
+            }
+
+        })
+
+    </script>
+
+
+
+</body>
+
+
+</html>

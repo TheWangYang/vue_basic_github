@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>绑定样式</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <style>
+        .basic {
+            width: 400px;
+            height: 100px;
+            border: 1px solid black
+        }
+
+        .happy {
+            background-color: burlywood;
+        }
+
+        .sad {
+            background-color: blue;
+        }
+
+        .normal {
+            background-color: yellow;
+        }
+
+
+
+        .test1 {
+            background-color: bisque;
+        }
+
+        .test2 {
+            font-size: 20px;
+        }
+
+
+        .test3 {
+            border-radius: 20%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <!--绑定class样式，字符串写法，适用于样式的类名不确定需要动态指定的情况-->
+        <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+
+        </br>
+        </br>
+
+        <!--实现class绑定任意数量的style样式，数组样式，比较方便的删除和添加-->
+        <div class="basic" :class="arr" @click="changeMood">{{name}}</div>
+
+
+        </br>
+        </br>
+
+        <!--需求：test1和test2的两种样式的使用与不使用的四种组合方式-->
+        <!--绑定方式：对象写法。适用于要绑定的样式个数确定，名字确定，但是使用不使用不确定的情况-->
+        <div class="basic" :class="classObj" @click="changeMood">{{name}}</div>
+
+
+        </br>
+        </br>
+
+        <div class="basic" :style="styleObj1">{{name}}</div>
+
+
+
+        </br>
+        </br>
+
+        <div class="basic" :style="[styleObj1,styleObj2]">{{name}}</div>
+
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        new Vue({
+            el: "#root",
+            data: {
+                name: "test",
+                mood: "normal",
+                arr: ['test1', 'test2', 'test3'],
+                classObj: {
+                    test1: false,
+                    test2: true
+                },
+
+                styleObj1: {
+                    fontSize: '40px'
+                },
+                styleObj2: {
+                    fontSize: '40px',
+                    color:'blue'
+                }
+
+            },
+
+            // methods: {
+            //     changeMood() {
+            //         //设置随机切换心情mood
+            //         const moodArr = ['happy', 'normal', 'sad']
+            //         //使用随机数生成0，1,2三个整数
+            //         const index = Math.floor(Math.random() * 3)  //向下取整之后得到的index索引值
+            //         this.mood = moodArr[index]
+            //     }
+            // }
+        })
+
+
+    </script>
+
+
+
+</body>
+
+
+</html>

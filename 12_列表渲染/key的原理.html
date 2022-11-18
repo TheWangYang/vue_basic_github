@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>key的基本原理</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+        <!--遍历数组-->
+        <ul>
+            <!--让每一个li都有一个id标识-->
+            <h2>遍历列表</h2>
+            <!-- <li v-for="p in persons" :key="p.id">
+                {{p.name}}-{{p.id}}-{{p.age}}
+            </li> -->
+
+            <button @click="add">添加一个老刘</button>
+            <!--key是每个li的唯一标识-->
+            <li v-for="(p, index) of persons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{index}}
+                <input type="text">
+            </li>
+
+        </ul>
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: '001', name: '张三', age: 22 },
+                    { id: '002', name: '李四', age: 24 },
+                    { id: '003', name: '王五', age: 26 }
+                ]
+            },
+            methods:{
+                add(){
+                    const p = {id:"004",name:"老刘",age:"45"}
+                    this.persons.unshift(p)
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>

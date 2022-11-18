@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue中的数据代理</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h1>学校名称：{{name}}</h1>
+        <h1>学校地址：{{address}}</h1>
+
+
+        <h1>学校名称：{{_data.name}}</h1>
+        <h1>学校地址：{{_data.address}}</h1>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        let data = {
+            name: 'xjtu',
+            address: '西安'
+        }
+
+        const vm = new Vue({
+            el:'#root',
+            data
+        })
+
+
+    </script>
+
+
+
+</body>
+
+
+</html>

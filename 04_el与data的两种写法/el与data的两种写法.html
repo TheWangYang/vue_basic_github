@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>el与data的两种写法</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h1>
+            你好，{{name}}！
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //设置为 false 以阻止 vue 在启动时生成生产提示
+
+
+        //绑定写法
+        new Vue({
+            el:'#root',
+            //data的第一种写法
+            // data:{
+            //     el:"#root",
+            //     name:'test' 
+            // }
+
+            //data的第二种写法
+            data: function () {
+                console.log(this) //此处的this为vue实例对象
+                return {
+                    name: 'test'
+                }
+            }
+        })
+
+
+        //另外一种写法
+        // const v = new Vue({
+        //     data:{
+        //         name:'test'
+        //     }
+        // })
+        // //打印一下vue对象
+        // console.log(v)
+
+        // // 表示使用$mount方法挂载vue对象实例到标签root上
+        // v.$mount("#root")
+
+    </script>
+
+
+
+</body>
+
+
+</html>

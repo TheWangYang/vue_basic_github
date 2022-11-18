@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>数据绑定</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        单向数据绑定：<input type="text" v-bind:value="name"></input>
+        双向数据绑定：<input type="text" v-model:value="name"></input>
+
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //设置为 false 以阻止 vue 在启动时生成生产提示
+
+
+        new Vue({
+            el: "#root",
+            data: {
+                name: "测试名字"
+            }
+        })
+
+
+    </script>
+
+
+
+</body>
+
+
+</html>

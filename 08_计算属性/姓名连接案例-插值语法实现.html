@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>姓名连接案例-插值语法实现</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        姓：<input type="text" placeholder="请输入姓" v-model="first_name"/> </br>
+        名：<input type="text" placeholder="请输入名" v-model="second_name"/> </br>
+
+        姓名：<span>{{first_name.slice(0,3)}}-{{second_name}}</span>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+    
+        new Vue({
+            el: '#root',
+            data: {
+                first_name: "张",
+                second_name:"三",
+            }
+        })
+
+    </script>
+
+
+
+</body>
+
+
+</html>

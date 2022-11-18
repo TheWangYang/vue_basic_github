@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>函数式</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>当前n的值为：<span v-text="n"></span></h2>
+        <h2>放大10倍的n值为：<span v-big="n"></span></h2>
+        <button @click="n++">点我n+1</button>
+        </br>
+
+        <!-- <input type="text" v-bind:value="n"> -->
+        <input type="text" v-fbind:value="n">
+
+        <input type="text" v-big-number:value="n">
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        Vue.directive('fbind',{
+            bind(){
+
+            },
+            
+            inserted(){
+
+            },
+
+            update(){
+
+            }
+        })
+
+        new Vue({
+            el: "#root",
+            data: {
+                n:1
+            },
+            directives:{
+                big(element,binding){
+                    element.innerText = binding.value * 10
+                    // console.log(element, binding.value)  //这里的a表示真实DOM对象，这里的b表示
+                },
+
+                // fbind(element, binding){//fbind使用这种写法时，不会直接在初次加载页面时就获取焦点
+                //     element.value = binding.value
+                //     element.focus()
+                // }
+                fbind:{
+                    //f指令与页面绑定之后调用
+                    bind(element, binding){
+                        element.value = binding.value
+                    },
+                    //指令所在元素被插入页面时调用
+                    inserted(element, binding){
+                        element.focus()
+                    },
+                    //指令所在模板被重新解析时调用
+                    update(element, binding){
+                        element.value = binding.value
+                        element.focus()
+                    }
+
+                },
+                //最完整写法
+                'big-number':function(element, binding){
+
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+
+
+</html>

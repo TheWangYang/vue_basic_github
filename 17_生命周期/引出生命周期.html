@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>引出生命周期</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2 :style="{opacity}">欢迎学习Vue技术</h2>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                opacity:1
+            },
+            // methods: {//methods无法实现渐变功能
+            //     changeOpacity(){
+
+            //         //设置内部定时器
+            //         setInterval(() => {
+            //             this.opacity -= 0.01
+            //             if(this.opacity <= 0){
+            //                 this.opacity = 1
+            //             }
+            //         },16)
+            //     } 
+            // },
+
+
+            //挂载函数
+            mounted() {
+                //设置内部定时器
+                    setInterval(() => {
+                        this.opacity -= 0.01
+                        if(this.opacity <= 0){
+                            this.opacity = 1
+                        }
+                    },16)
+                
+            },
+        })
+
+        //通过外部的定时器实现渐变效果
+        // setInterval(()=>{
+        //     vm.opacity -= 0.01
+
+        //     if(vm.opacity <= 0){
+        //         vm.opacity = 1
+        //     }
+
+        // },16)
+
+
+
+    </script>
+</body>
+
+
+</html>

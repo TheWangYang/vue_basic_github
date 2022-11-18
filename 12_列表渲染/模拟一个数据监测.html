@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>模拟一个数据监测</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+    </div>
+
+
+    <script type="text/javascript">
+        let data = {
+            name:"test",
+            address:"测试地址"
+        }
+        //创建一个监视的实例对象，用于监视数据的变化
+        const obs = new Observer(data)
+
+        //准备一个vm实例对象
+        let vm = {}
+        vm._data = data = obs
+
+        function Observer(obj){
+            //汇总对象中所有的属性形成一个数组
+            const keys = Object.keys(obj)
+            //遍历
+            keys.forEach((k)=>{
+                Object.defineProperty(this, k,{
+                    get(){
+                        return obj[k]
+                    },
+
+                    set(val){
+                        console.log(`数据被修改了，vm需要重新生成新的虚拟DOM对象...`)
+                        obj[k] = val
+                    }
+                })
+            })
+
+          
+
+        }
+
+    </script>
+</body>
+
+
+</html>

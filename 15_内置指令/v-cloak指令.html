@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>v-cloak指令</title>
+
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <div v-cloak>你好：{{name}}</div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:"#root",
+            data:{
+                name:"test"
+            }
+        })
+
+
+
+    </script>
+</body>
+
+
+</html>

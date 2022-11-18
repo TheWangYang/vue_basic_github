@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>销毁流程</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>当前的n值是：{{n}}</h2>
+        <button @click="add">点我n+1</button>
+        <button @click="bye">点我销毁流程</button>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                n:1
+            },
+            methods: {
+                add(){
+                    this.n ++
+                },
+
+                bye(){
+                    //调用vm的销毁流程
+                    console.log('bye')
+                    this.$destroy()
+                }
+            },
+
+            //监视属性n
+            watch:{
+                n(){
+                    console.log("n改变了！")
+                }
+            },
+
+            beforeCreate() {
+                console.log("beforeCreate")
+                // console.log(this)
+                // debugger;
+            },
+
+            created(){
+                console.log('created')
+                // console.log(this)
+                // debugger;
+            },
+            beforeMount() {//此时页面模板为还没有被Vue编译的结构，其中的函数等动作均无效
+                //此时对DOM组件的操作均为无效的
+                console.log('beforeMount')
+                // console.log(this)
+                // debugger;
+            },
+            mounted() {//到这里，Vue的初始化过程结束
+                //此时对DOM的操作是可以实现的，但是尽可能避免操作DOM，在这里一般进行如下动作：
+                //开启定时器，发送网络请求，订阅消息，绑定自定义事件等初始化操作
+                console.log('mounted')
+                // console.log(this)
+                // debugger;
+            },
+
+            beforeUpdate() {//数据是新的，但是页面中没有更改，数据和页面显示不同步
+                console.log("beforeUpdate")
+                // console.log(this)
+                // debugger;
+            },
+
+            updated() {//此时，数据是新的，页面也是新的
+                console.log("updated")
+                // console.log(this.n)
+
+            },
+            beforeDestroy() {
+                console.log('beforeDestroy')
+                // console.log(this.n)
+            },
+            destroyed() {
+                console.log("destroyed")
+            },
+            
+
+        })
+
+
+    </script>
+</body>
+
+
+</html>

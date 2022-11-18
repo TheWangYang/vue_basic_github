@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>一个重要的内置关系</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+        //定义school组件
+            const school = Vue.extend(
+                {
+                    template: `
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{schoolAddress}}</h2>
+            </div>
+            `,
+                    data() {
+                        return {
+                            schoolName: "xjtu",
+                            schoolAddress: "西安"
+                        }
+                    }
+                }
+            )
+
+        //创建一个vm对象实例
+        new Vue({
+            el:"#root",
+            data:{
+                msg:"你好"
+            }
+        })
+
+        console.log(school.prototype.__proto__ === Vue.prototype)
+
+
+
+
+        // //定义原型构造函数
+        // function Demo(){
+        //     this.a = 1,
+        //     this.b = 1
+        // }
+
+        // const demo = new Demo()
+
+        // // console.log(Demo.prototype)  //显式原型属性
+        // // console.log(demo.__proto__)  //隐式原型属性
+
+        // //通过Demo指定一个x属性
+        // Demo.prototype.x = 99
+
+        // console.log(demo.x)
+
+
+    </script>
+</body>
+
+
+</html>

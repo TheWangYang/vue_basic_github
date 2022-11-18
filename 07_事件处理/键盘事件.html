@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>键盘事件</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <style>
+        * {
+            margin: 20px;
+        }
+
+
+        .demo2 {
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .box1 {
+            padding: 5px;
+            background-color: skyblue;
+        }
+
+        .box2 {
+            padding: 5px;
+            background-color: orange;
+
+        }
+
+
+        .list {
+            height: 200px;
+            width: 200px;
+            background-color: peru;
+            overflow: auto;
+        }
+
+        li {
+            height: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <input type="text" placeholder="按下回车提示输入" @keydown.ctrl.y="showInfo"/>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        // Vue.config.keyCodes.huiche = 13
+
+        new Vue({
+            el: '#root',
+            data: { 
+                name: "xjtu"
+            },
+            methods:{
+                showInfo(e){
+
+                    // console.log(e.key)
+                    //输出键盘按键的编码
+                    // console.log(e.keyCode)
+                    // if(e.keyCode !== 13){
+                    //     return
+                    // }
+                     console.log(e.target.value)
+                   
+                    
+                }
+            }
+
+        })
+
+    </script>
+
+
+
+</body>
+
+
+</html>

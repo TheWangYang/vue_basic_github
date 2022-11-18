@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>v-text指令</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+    </br>
+
+    {{name}}
+
+    </br>
+
+    <div v-text="name"></div>
+</div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:"#root",
+            data:{
+                name:"test"
+            }
+        })
+
+
+
+    </script>
+</body>
+
+
+</html>

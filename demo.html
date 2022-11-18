@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>测试Vue.runtime.global.js</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="./js/vue.runtime.global.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+    
+
+    <script type="text/javascript">
+        // Vue.config.productionTip = false
+        new Vue({
+            el:"#root",
+            // template:`
+            // <h1>你好，test！</h1>
+            // `,
+            render(h){
+                return h("h2","你好，wyy！") 
+            }
+        })
+    </script>
+</body>
+
+</html>

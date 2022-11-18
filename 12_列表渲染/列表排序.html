@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>列表排序</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+        <!--遍历数组-->
+        <ul>
+            <!--让每一个li都有一个id标识-->
+            <h2>遍历列表</h2>
+
+            <input type="text" placeholder="请输入想要搜索的名字：" v-model="keyWords">
+            <button @click="sortType = 1">年龄升序</button>
+            <button @click="sortType = 2">年龄降序</button>
+            <button @click="sortType = 0">原顺序</button>
+
+            <li v-for="p in filPersons" :key="p.id">
+                {{p.name}}-{{p.id}}-{{p.age}}
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el: "#root",
+            data: {
+                keyWords:"",
+                sortType:0,  //0代表原顺序，1代表升序，2代表降序
+                persons: [
+                    { id: '001', name: '张三', age: 22 },
+                    { id: '002', name: '李四', age: 24 },
+                    { id: '003', name: '王五', age: 26 },
+                    { id: '004', name: '一哥', age: 26 }
+            ]
+            },
+
+            //使用computed计算属性
+            computed:{
+                filPersons(val){
+                    //保留filPersons过滤后的数组
+                    const arr = this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+
+                    //然后进行排序
+                    if(this.sortType !== 0){//表示需要排序
+                        arr.sort((a,b)=>{
+                            return this.sortType === 1 ? b.age- a.age : a.age - b.age
+                        })
+                    }
+                    
+                    return arr
+                }
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>总结生命周期</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2 :style="{opacity}">欢迎学习Vue技术</h2>
+
+        <button @click="stopChange">点我停止变换</button>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                opacity:1
+            },
+
+            methods: {
+                stopChange(){
+                    //清楚定时器对象
+                    //比较温柔的停止
+                    // clearInterval(this.timer)
+
+                    //直接销毁vm对象实例
+                    this.$destroy()
+                }
+            },
+
+            //挂载函数
+            mounted() {
+                //设置内部定时器
+                //向this对象（vm）中存了一个id属性
+                    this.timer = setInterval(() => {
+                        this.opacity -= 0.01
+                        if(this.opacity <= 0){
+                            this.opacity = 1
+                        }
+                    },16)
+                
+            },
+
+            beforeDestroy() {
+                console.log('销毁定时器')
+                //在销毁之前停止定时器
+                clearInterval(this.timer)
+            },
+        })
+
+    </script>
+</body>
+
+
+</html>

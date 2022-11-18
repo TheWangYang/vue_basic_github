@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>列表过滤</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+        <!--遍历数组-->
+        <ul>
+            <!--让每一个li都有一个id标识-->
+            <h2>遍历列表</h2>
+            <input type="text" placeholder="请输入想要搜索的名字：" v-model="keyWords">
+            <li v-for="p in filPersons" :key="p.id">
+                {{p.name}}-{{p.id}}-{{p.age}}
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el: "#root",
+            data: {
+                keyWords:"",
+                persons: [
+                    { id: '001', name: '张三', age: 22 },
+                    { id: '002', name: '李四', age: 24 },
+                    { id: '003', name: '王五', age: 26 },
+                    { id: '004', name: '一哥', age: 26 }
+            ]
+            },
+
+            //用watch计算属性实现
+            // watch:{
+            //     keyWords:{
+            //         immediate:true,
+            //         handler(val){
+            //              // console.log(val)
+            //             this.filPersons = this.persons.filter((p) => {
+            //                 return p.name.indexOf(val) !== -1
+            //             })
+            //         }
+            //     }
+            // },
+
+            //使用computed计算属性
+            computed:{
+                filPersons(val){
+                    return this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+                }
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>

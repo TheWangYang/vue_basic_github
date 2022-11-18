@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>姓名连接案例-监视属性实现</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        姓：<input type="text" placeholder="请输入姓" v-model="first_name" /> </br>
+        名：<input type="text" placeholder="请输入名" v-model="second_name" /> </br>
+
+        姓名：<span>{{fullName}}</span>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                first_name: "张",
+                second_name: "三",
+                fullName: "张-三"
+            },
+            watch: {
+                first_name(newValue) {
+                    setTimeout(() => {
+                        // console.log(this)  //此时的this为vm对象实例
+                        this.fullName = newValue + "-" + this.second_name
+                    }, 1000)
+                    // this.fullName = newValue + "-" + this.second_name
+                },
+                second_name(newValue) {
+                    this.fullName = this.first_name + "-" + newValue
+                }
+            },
+            // computed: {
+            //     fullName() {
+            //         return this.first_name + "-" + this.second_name
+            //     }
+            // }
+        })
+
+    </script>
+
+</body>
+
+
+</html>

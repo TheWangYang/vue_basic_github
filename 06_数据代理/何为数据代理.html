@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>何为数据代理</title>
+    <!--引入Vue-->
+    <!--创建Vue对象-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <!--数据代理，通过一个对象代理对另一个对象中属性的操作-->
+
+    <script>
+        let obj1 = {x:100}
+        let obj2 = {y:200}
+
+        //实现在obj2中修改obj1中的属性x的值的代码
+        Object.defineProperty(obj2,'x',{
+            get(){
+                return obj1.x
+            },
+
+            set(value){
+                obj2.x = value
+
+            }
+        })
+    </script>
+</body>
+
+
+</html>

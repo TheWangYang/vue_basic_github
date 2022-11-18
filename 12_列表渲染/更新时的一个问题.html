@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>更新时的一个问题</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+
+        <!--遍历数组-->
+        <ul>
+            <!--让每一个li都有一个id标识-->
+            <h2>遍历列表</h2>
+            <button @click="updateSan">点击更新张三的信息</button>
+            <li v-for="p in persons" :key="p.id">
+                {{p.name}}-{{p.id}}-{{p.age}}
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        //得到vm对象实例
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: '001', name: '张三', age: 22 },
+                    { id: '002', name: '李四', age: 24 },
+                    { id: '003', name: '王五', age: 26 },
+                    { id: '004', name: '一哥', age: 26 }
+                ]
+            },
+            methods: {
+                updateSan() {
+                    //this.persons[0] = {id:"000",name:"马老师",age:"54"}
+                    // console.log("已经更新完毕！")
+                    this.persons.splice(0, 1, { id: "000", name: "马老师", age: "54" })
+                }
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue.set的使用</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--准备好一个容器-->
+
+    <div id="root">
+        <h2>学校名称：{{name}}</h2>
+        <h2>学校地址：{{address}}</h2>
+        <h2>校长是：{{leader}}</h2>
+
+        </br>
+
+        <button @click="addAttribute">点我增加性别属性</button>
+        <h2>学生姓名：{{student.name}}</h2>
+        <h2>学生年龄：真实{{student.age.rAge}}, 对外：{{student.age.sAge}}</h2>
+        <h2>学生性别：{{student.sex}}</h2>
+
+        <ul v-for="f in student.friends" :key="f.id">
+            <li>{{f.name}}-{{f.age}}</li>
+        </ul>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "姓名测试",
+                address: "地址测试",
+                student: {
+                    id: "001",
+                    name: "wyy",
+                    age: {
+                        rAge: 18,
+                        sAge: 22
+                    },
+                    friends: [
+                        { id: "002", name: "test1", age: 22 },
+                        { id: "003", name: "test2", age: 32 },
+                        { id: "004", name: "test3", age: 25 },
+                    ]
+                }
+            },
+            methods: {
+                addAttribute() {
+                    vm.$set(this.student, 'sex', '男')
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>
